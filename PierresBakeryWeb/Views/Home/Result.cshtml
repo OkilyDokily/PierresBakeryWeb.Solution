@@ -1,0 +1,26 @@
+
+            @{
+              int totalAmount = 0;
+              int totalValue = 0;
+            };
+            <p>"Your itemized receipt."</p> 
+            <p>"------------------"</p>
+            @foreach(KeyValuePair<string,Dictionary<string,int[]>> entry in @Model)
+            {
+                totalAmount += entry.Value[entry.Key][0];
+                totalValue += entry.Value[entry.Key][1];
+                <p>@("You purchased " + @entry.Value[entry.Key][0] + " " + @entry.Key + " items for a total value of " + @entry.Value[entry.Key][1] + ".")</p>
+                <p>@("Your itemized " + @entry.Key + " purchases are as follows:")</p> 
+                
+                
+                foreach(KeyValuePair<string,int[]> item in entry.Value)
+                {
+                    if(!(item.Key == entry.Key))
+                    {
+                      <p>@("      You purchased " + @item.Value[0] + " " + @item.Key + " items for " + @item.Value[1] + " dollars.")</p>   
+                    }    
+                }
+            }
+            <p>"----------------------------"</> 
+            <p>@("You ordered " + @totalAmount +" items in total.")</p> 
+            <p>@("Your total purchase value is " + @totalValue  + " dollars.")</p>  

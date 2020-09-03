@@ -1,0 +1,40 @@
+
+<div class="jumbotron">Welcome to Pierre's Bakery</div>
+  <div class="container">
+     <p>"Welcome to Pierre's Bakery."</p> 
+            
+            
+            @foreach(KeyValuePair<string,Dictionary<string,int[]>> entry in Model)
+            {
+                <p>@("We have the following " + @entry.Key + " items.")</p> 
+                <p>---------------------------------</p>  
+                foreach(KeyValuePair<string,int[]> item in entry.Value)
+                {
+                    <p>@item.Key</p>
+                    <p>@("A single item costs " + @item.Value[0] + " dollars.")</p>
+                    <p>@("You can buy " + @item.Value[2] + " for " + @item.Value[1])</p>
+                }
+            }
+            <p>"-----------------"</p>
+
+    <form action="/result" method="POST">
+      <div class="form-group">
+        <label for="brioche">Brioche</label>
+        <input type="number" id="brioche" name="brioche" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="zwieback">Zwieback</label>
+        <input type="number" id="zwieback" name="zwieback" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="croissant">Croissant</label>
+        <input type="number" id="croissant" name="croissant" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="cronut">Cronut</label>
+        <input type="number" id="cronut" name="cronut" class="form-control">
+      </div>
+      <button type="submit">Go</button>
+    </form> 
+  </div>
+
